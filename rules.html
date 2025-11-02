@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Règlement - VitaLife🌴</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .rules-container {
+            max-width: 1200px;
+            margin: 120px auto 50px;
+            padding: 2rem;
+        }
+
+        .rules-header {
+            text-align: center;
+            margin-bottom: 4rem;
+            position: relative;
+        }
+
+        .rules-header h2 {
+            font-size: 3rem;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 1rem;
+            animation: fadeInUp 0.8s ease;
+        }
+
+        .rules-header p {
+            color: #888;
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto;
+            animation: fadeInUp 0.8s ease 0.2s forwards;
+            opacity: 0;
+        }
+
+        .rules-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .rule-card {
+            background: rgba(0, 0, 0, 0.7);
+            border-radius: 15px;
+            padding: 2rem;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            animation: fadeInUp 0.6s ease-out forwards;
+            opacity: 0;
+        }
+
+        .rule-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent, rgba(0, 102, 255, 0.1), transparent);
+            transform: translateX(-100%);
+            transition: transform 0.6s;
+        }
+
+        .rule-card:hover::before {
+            transform: translateX(100%);
+        }
+
+        .rule-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 10px 30px rgba(0, 102, 255, 0.2);
+            border-color: rgba(0, 102, 255, 0.3);
+        }
+
+        .rule-card .rule-number {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            font-size: 3rem;
+            font-weight: bold;
+            color: rgba(0, 102, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .rule-card:hover .rule-number {
+            transform: scale(1.2);
+            color: rgba(0, 102, 255, 0.2);
+        }
+
+        .rule-card h3 {
+            color: var(--secondary-color);
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .rule-card h3 i {
+            font-size: 1.8rem;
+            transition: transform 0.3s ease;
+        }
+
+        .rule-card:hover h3 i {
+            transform: scale(1.2) rotate(5deg);
+        }
+
+        .rule-card p {
+            line-height: 1.6;
+            color: #888;
+            margin-bottom: 1rem;
+        }
+
+        .rule-card .rule-details {
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .rule-card .rule-details ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .rule-card .rule-details li {
+            margin-bottom: 0.5rem;
+            padding-left: 1.5rem;
+            position: relative;
+            color: #888;
+        }
+
+        .rule-card .rule-details li::before {
+            content: '•';
+            color: var(--secondary-color);
+            position: absolute;
+            left: 0;
+        }
+
+        .rule-card .rule-details li:hover {
+            color: var(--text-color);
+            transform: translateX(5px);
+            transition: all 0.3s ease;
+        }
+
+        .rule-card:nth-child(1) { animation-delay: 0.1s; }
+        .rule-card:nth-child(2) { animation-delay: 0.2s; }
+        .rule-card:nth-child(3) { animation-delay: 0.3s; }
+        .rule-card:nth-child(4) { animation-delay: 0.4s; }
+        .rule-card:nth-child(5) { animation-delay: 0.5s; }
+        .rule-card:nth-child(6) { animation-delay: 0.6s; }
+
+        .rules-footer {
+            text-align: center;
+            margin-top: 4rem;
+            padding: 2rem;
+            background: rgba(0, 0, 0, 0.7);
+            border-radius: 15px;
+            border: 1px solid rgba(0, 102, 255, 0.2);
+            animation: fadeInUp 0.8s ease 0.7s forwards;
+            opacity: 0;
+        }
+
+        .rules-footer p {
+            color: #888;
+            margin-bottom: 1rem;
+        }
+
+        .rules-footer .warning {
+            color: #ff4444;
+            font-weight: bold;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-brand">
+            <i class="fas fa-gamepad"></i>
+            <span>VitaLife🌴</span>
+        </div>
+        <div class="nav-links">
+            <a href="index.html">Accueil</a>
+            <a href="rules.html" class="active">Règlement</a>
+            <a href="team.html">Équipe</a>
+            <a href="discord.html">Discord</a>
+        </div>
+    </nav>
+
+    <div class="rules-container">
+        <div class="rules-header">
+            <h2>Règlement du Serveur</h2>
+            <p>Pour garantir une expérience RP immersive et agréable pour tous, merci de respecter les règles suivantes.</p>
+        </div>
+        
+        <div class="rules-grid">
+            <div class="rule-card">
+                <div class="rule-number">01</div>
+                <h3><i class="fas fa-handshake"></i> Comportement Respectueux</h3>
+                <p>Chaque joueur doit faire preuve de respect envers les autres membres de la communauté.</p>
+                <div class="rule-details">
+                    <ul>
+                        <li>Aucun propos discriminatoire ou insultant</li>
+                        <li>Comportement toxique interdit</li>
+                        <li>Pas de harcèlement ou de provocation</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="rule-card">
+                <div class="rule-number">02</div>
+                <h3><i class="fas fa-theater-masks"></i> Règles de Roleplay</h3>
+                <p>Le réalisme est essentiel sur VitaLife. Vos actions doivent rester cohérentes avec votre personnage et la situation.</p>
+                <div class="rule-details">
+                    <ul>
+                        <li>Comportement réaliste obligatoire</li>
+                        <li>Powergaming et Metagaming interdits</li>
+                        <li>Développement de personnage attendu</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="rule-card">
+                <div class="rule-number">03</div>
+                <h3><i class="fas fa-comments"></i> Communication</h3>
+                <p>Une bonne communication est essentielle pour un RP fluide et immersif.</p>
+                <div class="rule-details">
+                    <ul>
+                        <li>Le chat local est réservé à l’RP</li>
+                        <li>Le OOC est uniquement hors RP</li>
+                        <li>Spam, pub et flood interdits</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="rule-card">
+                <div class="rule-number">04</div>
+                <h3><i class="fas fa-car"></i> Véhicules</h3>
+                <p>La conduite RP fait partie intégrante du réalisme sur le serveur.</p>
+                <div class="rule-details">
+                    <ul>
+                        <li>Respect du code de la route</li>
+                        <li>Pas de conduite irréaliste</li>
+                        <li>Stationnement cohérent</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="rule-card">
+                <div class="rule-number">05</div>
+                <h3><i class="fas fa-gun"></i> Armes et Combats</h3>
+                <p>Les affrontements doivent toujours être logiques, justifiés et réalistes.</p>
+                <div class="rule-details">
+                    <ul>
+                        <li>Armes uniquement avec licence valide</li>
+                        <li>Actions de combat RP et crédibles</li>
+                        <li>RDM et VDM strictement interdits</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="rule-card">
+                <div class="rule-number">06</div>
+                <h3><i class="fas fa-shield-alt"></i> Règles Générales</h3>
+                <p>Ces règles garantissent une expérience saine et équilibrée pour tous.</p>
+                <div class="rule-details">
+                    <ul>
+                        <li>Mods, cheats et macros interdits</li>
+                        <li>Aucun exploit de bug</li>
+                        <li>Respect envers le staff obligatoire</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="rules-footer">
+            <p>Le staff se réserve le droit de sanctionner tout joueur ne respectant pas le règlement.</p>
+            <p class="warning">Les récidives peuvent mener à un bannissement définitif.</p>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="imprint.html" target="_blank">Mentions légales</a>
+                <a href="privacy.html" target="_blank">Confidentialité</a>
+            </div>
+            <div class="footer-copyright">
+                &copy; 2025 VitaLife🌴. Tous droits réservés.
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
